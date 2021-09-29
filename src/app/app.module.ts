@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MemberService } from 'src/services/member.service';
 
 @NgModule({
   declarations: [AppComponent, MemberListComponent],
@@ -20,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [MemberService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
