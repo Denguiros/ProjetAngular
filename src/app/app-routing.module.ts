@@ -14,6 +14,11 @@ const routes: Routes = [
     component: MemberFormComponent,
   },
   {
+    path: ':id/edit',
+    pathMatch: 'full',
+    component: MemberFormComponent,
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'members',

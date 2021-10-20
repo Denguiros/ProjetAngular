@@ -5,7 +5,7 @@
     routerLink="/form"
     class="addButton"
   >
-    <mat-icon>add</mat-icon> new user
+    <mat-icon>add</mat-icon> Create New
   </button>
 </div>
 
@@ -65,18 +65,16 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element" style="width: 8%">
-      <button
-        mat-icon-button
-        color="primary"
-        aria-label="Example icon button with a home icon"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a home icon"
-        style="color: red"
-      >
+      <router-outlet>
+        <button
+          mat-icon-button
+          color="primary"
+          routerLink="/{{ element.id }}/edit"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </router-outlet>
+      <button mat-icon-button style="color: red">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

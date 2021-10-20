@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { member } from 'src/models/member.model';
+import { Member } from 'src/models/member.model';
 import { MemberService } from 'src/services/member.service';
 @Component({
   selector: 'app-member-list',
@@ -7,7 +7,7 @@ import { MemberService } from 'src/services/member.service';
   styleUrls: ['./member-list.component.css'],
 })
 export class MemberListComponent implements OnInit {
-  datasource: member[] = [];
+  datasource: Member[] = [];
   ngOnInit(): void {
     this.fetchDataSource();
   }

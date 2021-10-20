@@ -1,4 +1,4 @@
-export interface member {
+export interface Member {
   id: string;
   cin: string;
   name: string;
