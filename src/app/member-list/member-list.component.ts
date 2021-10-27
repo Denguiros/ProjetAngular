@@ -23,5 +23,14 @@ export class MemberListComponent implements OnInit {
     'createdDate',
     'actions',
   ];
+  getAllMembers() {
+    this.datasource = this.memberService.tab;
+  }
+  onRemove(id: string) {
+    this.memberService.deleteMemberById(id).then(() => {
+      this.getAllMembers();
+    });
+  }
   constructor(private memberService: MemberService) {}
+  //TODO: Filter lists by name
 }
