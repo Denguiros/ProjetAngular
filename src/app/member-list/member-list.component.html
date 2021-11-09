@@ -8,7 +8,15 @@
     <mat-icon>add</mat-icon> Create New
   </button>
 </div>
-
+<mat-form-field class="formField" appearance="fill">
+  <label class="custom-control-label">Search by name</label>
+  <input
+    type="text"
+    matInput
+    [(ngModel)]="fetchedName.name"
+    (ngModelChange)="searchMemebersByName(fetchedName.name)"
+  />
+</mat-form-field>
 <table
   mat-table
   [dataSource]="datasource"
@@ -74,7 +82,11 @@
           <mat-icon>edit</mat-icon>
         </button>
       </router-outlet>
-      <button mat-icon-button style="color: red" (click)="onRemove(element.id)">
+      <button
+        mat-icon-button
+        style="color: red"
+        (click)="openRemoveMemberDialog(element.id)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </td>

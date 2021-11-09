@@ -41,9 +41,15 @@ import { MatRippleModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { RemoveMemberDialog } from './member-list/remove-member-dialog';
 
 @NgModule({
-  declarations: [AppComponent, MemberListComponent, MemberFormComponent],
+  declarations: [
+    AppComponent,
+    MemberListComponent,
+    MemberFormComponent,
+    RemoveMemberDialog,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
