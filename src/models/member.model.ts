@@ -5,4 +5,7 @@ export interface Member {
   type: string;
   cv: string;
   createdDate: string;
+  email: string;
+  photoURL: string;
+  emailVerified: boolean;
 }
