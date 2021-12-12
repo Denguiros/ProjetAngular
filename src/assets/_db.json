@@ -24,5 +24,19 @@
       "cv": "lien",
       "createdDate": "2020-10"
     }
-  ]
+  ],
+  "etudaints": [
+    {
+    "dateInscription": "2020-10",
+    "diplome": "informatique"
+    },
+    {
+      "dateInscription": "2020-10",
+      "diplome": "mecanique"
+    }
+  ],
+  "outils": [],
+  "publications": [],
+  "evenements": [],
+  "enseignantChercheurs": []
 }
