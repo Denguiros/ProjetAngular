@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<div fxLayout="row" fxLayoutAlign="end center" style="margin-top: 1rem">
   <button
     mat-raised-button
     color="primary"
@@ -9,12 +9,12 @@
   </button>
 </div>
 <mat-form-field class="formField" appearance="fill">
-  <label class="custom-control-label">Search by name</label>
+  <label class="custom-control-label">Search by name or id</label>
   <input
     type="text"
     matInput
     [(ngModel)]="fetchedName.name"
-    (ngModelChange)="searchMemebersByName(fetchedName.name)"
+    (ngModelChange)="searchMembers(fetchedName.name)"
   />
 </mat-form-field>
 <table

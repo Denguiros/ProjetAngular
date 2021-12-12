@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Member } from 'src/models/member.model';
 import { MemberService } from 'src/services/member.service';
-import { RemoveMemberDialog } from './remove-member-dialog';
+import { ConfirmDialog } from '../dialog-component/confirm-dialog';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
@@ -36,18 +36,36 @@ export class MemberListComponent implements OnInit {
       this.getAllMembers();
     });
   }
-  searchMemebersByName(name: string) {
-    if (name != '') {
+  searchMembers(input: string) {
+    const foundMemebersById = this.searchMembersById(input);
+    const foundMembersByName = this.searchMemebersByName(input);
+    const allFoundMembers = foundMembersByName.concat(foundMemebersById);
+    if (
+      (allFoundMembers === undefined || allFoundMembers.length === 0) &&
+      input === ''
+    )
       this.getAllMembers();
-      this.datasource = this.datasource.filter((member) =>
-        member.name.includes(name)
-      );
-    } else {
-      this.getAllMembers();
+    else {
+      this.datasource = allFoundMembers;
     }
   }
+  searchMembersById(input: string) {
+    if (input != '') {
+      this.getAllMembers();
+      return this.datasource.filter((member) => member.id.includes(input));
+    }
+    return [];
+  }
+  searchMemebersByName(input: string) {
+    if (input != '') {
+      this.getAllMembers();
+      return this.datasource.filter((member) => member.name.includes(input));
+    }
+    return [];
+  }
+
   openRemoveMemberDialog(id: string) {
-    const dialogRef = this.dialog.open(RemoveMemberDialog);
+    const dialogRef = this.dialog.open(ConfirmDialog);
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
@@ -59,5 +77,4 @@ export class MemberListComponent implements OnInit {
     private memberService: MemberService,
     private dialog: MatDialog
   ) {}
-  //TODO: Filter lists by name
 }

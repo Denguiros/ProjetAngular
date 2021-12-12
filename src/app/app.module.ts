@@ -41,14 +41,27 @@ import { MatRippleModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { RemoveMemberDialog } from './member-list/remove-member-dialog';
+import { ConfirmDialog } from './dialog-component/confirm-dialog';
+import { LayoutComponent } from './layout/layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ToolsComponent } from './tools/tools.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { EventsComponent } from './events/events.component';
+import { FirebaseModule } from './firebase.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MemberListComponent,
     MemberFormComponent,
-    RemoveMemberDialog,
+    ConfirmDialog,
+    LayoutComponent,
+    DashboardComponent,
+    ToolsComponent,
+    ArticlesComponent,
+    EventsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +107,7 @@ import { RemoveMemberDialog } from './member-list/remove-member-dialog';
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
+    FirebaseModule,
   ],
   exports: [
     MatCheckboxModule,

@@ -24,6 +24,8 @@ export class MemberFormComponent implements OnInit {
     if (!!this.currentId) {
       this.memberService.getMemeberById(this.currentId).then((member) => {
         this.memberReceivedByService = member;
+        console.log('Found member');
+        console.log(member);
         this.initForm(member);
       });
     } else {

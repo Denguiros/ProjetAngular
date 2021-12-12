@@ -32,4 +32,8 @@ export class MemberService {
     this.tab = this.tab.filter((member) => member.id !== id);
     return new Promise((resolve) => resolve());
   }
+  getAllMemebers(): Promise<Member[]> {
+    // return this.httpClient.get<Member[]>('LinkToRestAPI').toPromise();
+    return new Promise((resolve) => resolve(this.tab));
+  }
 }
