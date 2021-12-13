@@ -50,6 +50,15 @@ import { EventsComponent } from './events/events.component';
 import { FirebaseModule } from './firebase.module';
 import { LoginComponent } from './login/login.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+FullCalendarModule.registerPlugins([
+  interactionPlugin,
+  dayGridPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +117,8 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     HttpClientModule,
     FirebaseModule,
+    FullCalendarModule,
+    HttpClientModule
   ],
   exports: [
     MatCheckboxModule,
