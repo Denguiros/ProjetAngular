@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { INITIAL_EVENTS,createEventId} from './event-utils';
 import { HttpClient } from '@angular/common/http';
-import { CalendarOptions } from '@fullcalendar/angular';
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi  } from '@fullcalendar/angular';
 
 @Component({
   selector: 'app-events',
@@ -12,37 +12,70 @@ export class EventsComponent implements OnInit {
 
   Events: any = [];
 
-  calendarOptions: CalendarOptions = {};
+  calendarVisible = true;
+  calendarOptions: CalendarOptions = {
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    },
+    initialView: 'dayGridMonth',
+    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    weekends: true,
+    editable: true,
+    selectable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+    select: this.handleDateSelect.bind(this),
+    eventClick: this.handleEventClick.bind(this),
+    eventsSet: this.handleEvents.bind(this)
+    /* you can update a remote database when these fire:
+    eventAdd:
+    eventChange:
+    eventRemove:
+    */
+  };
 
   constructor(private httpClient: HttpClient) { }
 
+  ngOnInit(): void {}
+  currentEvents: EventApi[] = [];
 
-  onDateSelect(arg: any) {
-    alert('Date clicked: ' + arg.dateStr)
+  handleCalendarToggle() {
+    this.calendarVisible = !this.calendarVisible;
   }
 
-  ngOnInit(){
-      setTimeout(() => {
-          return this.httpClient.get('http://localhost/test/events.php')
-          .subscribe((res: any) => {
-            console.log(res.start.toLocaleString());
-              this.Events.push(res);
-              console.log(this.Events);
-          });
-      }, 0);
-
-      setTimeout(() => {
-          this.calendarOptions = {
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-          },
-          dateClick: this.onDateSelect.bind(this),
-          events: this.Events
-          };
-      }, 500);
+  handleWeekendsToggle() {
+    const { calendarOptions } = this;
+    calendarOptions.weekends = !calendarOptions.weekends;
   }
+
+  handleDateSelect(selectInfo: DateSelectArg) {
+    const title = prompt('Please enter a new title for your event');
+    const calendarApi = selectInfo.view.calendar;
+
+    calendarApi.unselect(); // clear date selection
+
+    if (title) {
+      calendarApi.addEvent({
+        id: createEventId(),
+        title,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      });
+    }
+  }
+
+  handleEventClick(clickInfo: EventClickArg) {
+    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      clickInfo.event.remove();
+    }
+  }
+
+  handleEvents(events: EventApi[]) {
+    this.currentEvents = events;
+  }
+
 
 }
