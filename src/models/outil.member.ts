@@ -1,5 +1,5 @@
 export interface Outil {
-  Id: Long;
-  Date : Date;
-  Source: string;
+  id: Long;
+  date : Date;
+  source: string;
 }

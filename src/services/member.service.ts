@@ -7,7 +7,7 @@ import { Member } from 'src/models/member.model';
   providedIn: 'root',
 })
 export class MemberService {
-  public tab: Member[] = GLOBAL._DB.members;
+  public tab: Member[] = [];
 
   constructor(private httpClient: HttpClient) {}
   saveMember(member: Member): Promise<Member> {
@@ -22,10 +22,9 @@ export class MemberService {
     return new Promise((resolve) => resolve(memberToSave));
   }
   getMemeberById(id: string): Promise<Member> {
-    // return this.httpClient.get<void>('LinkToRestAPI').toPromise();
-    return new Promise((resolve) =>
-      resolve(this.tab.filter((element) => element.id === id)[0] ?? null)
-    );
+    return this.httpClient
+      .get<Member>('http://localhost:9000/MEMBRE-SERVICE/membre/' + id)
+      .toPromise();
   }
   deleteMemberById(id: string): Promise<void> {
     // return this.httpClient.delete<void>('LinkToRestAPI').toPromise();
@@ -33,7 +32,8 @@ export class MemberService {
     return new Promise((resolve) => resolve());
   }
   getAllMemebers(): Promise<Member[]> {
-    // return this.httpClient.get<Member[]>('LinkToRestAPI').toPromise();
-    return new Promise((resolve) => resolve(this.tab));
+    return this.httpClient
+      .get<Member[]>('http://localhost:9000/MEMBRE-SERVICE/membres')
+      .toPromise();
   }
 }

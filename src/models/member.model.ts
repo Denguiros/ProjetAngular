@@ -1,11 +1,12 @@
 export interface Member {
   id: string;
   cin: string;
-  name: string;
+  nom: string;
   type: string;
   cv: string;
   createdDate: string;
-  email: string;
-  photoURL: string;
-  emailVerified: boolean;
+  dateInscription: Date;
+  diplome: string;
+  grade: string;
+  etablissement: string;
 }

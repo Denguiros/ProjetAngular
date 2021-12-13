@@ -1,45 +1,29 @@
 <mat-sidenav-container>
   <!-- The side nav -->
-  <mat-sidenav
-    #drawer
-    fixedInViewport="true"
-    mode="over"
-    opened="false"
-    style="width: 230px"
-  >
-    <!-- <div *ngIf="!!isLoggedIn"> -->
-    <div>
-      <div>
-        <!-- <div *ngIf="isLoggedIn"> -->
-        <mat-toolbar color="primary" fxLayout fxLayoutGap="16px">
-          <mat-icon>school</mat-icon>
-          <span>ENIS </span>
-        </mat-toolbar>
+  <mat-sidenav #drawer fixedInViewport="true" mode="over" opened="false" style="width: 230px">
+    <div *ngIf="isLoggedIn">
+      <mat-toolbar color="primary" fxLayout fxLayoutGap="16px">
+        <mat-icon>school</mat-icon>
+        <span>ENIS </span>
+      </mat-toolbar>
 
-        <mat-nav-list>
-          <a mat-list-item routerLink="/dashboard">Dashboard</a>
-          <a mat-list-item routerLink="/members">Members</a>
-          <a mat-list-item routerLink="/tools">Tools</a>
-          <a mat-list-item routerLink="/article">Articles</a>
-          <a mat-list-item routerLink="/events">Events</a>
-        </mat-nav-list>
-      </div>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/members">Members</a>
+        <a mat-list-item routerLink="/tools">Tools</a>
+        <a mat-list-item routerLink="/article">Articles</a>
+        <a mat-list-item routerLink="/events">Events</a>
+      </mat-nav-list>
     </div>
   </mat-sidenav>
   <!-- EO: Side nav-->
 
   <!-- Side nav content-->
   <mat-sidenav-content>
-    <!-- <mat-toolbar color="primary" *ngIf="!!isLoggedIn"> -->
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" *ngIf="isLoggedIn">
       <div fxFlex fxLayout fxLayoutAlign="start center">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          class="toolbar-button"
-          mat-icon-button
-          (click)="drawer.toggle()"
-        >
+        <button type="button" aria-label="Toggle sidenav" class="toolbar-button" mat-icon-button
+          (click)="drawer.toggle()">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <div>ENIS</div>
@@ -47,16 +31,12 @@
         <div fxFlex></div>
 
         <div class="toolbar-separator"></div>
-        <button
-          [matMenuTriggerFor]="userMenu"
-          class="toolbar-button"
-          mat-button
-        >
+        <button [matMenuTriggerFor]="userMenu" class="toolbar-button" mat-button>
           <div fxLayout="row" fxLayoutAlign="center center">
-            <!--          <img class="avatar mr-0 mr-sm-16" [src]="user.photoURL">-->
+            <img class="avatar mr-0 mr-sm-16" [src]="loggedInUser.photoURL">
             <mat-icon>account_circle</mat-icon>
             <span class="username mx-12" fxHide fxShow.gt-sm>
-              <!-- {{ user.displayName }} -->
+              {{ loggedInUser.displayName }}
             </span>
             <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
           </div>
@@ -67,8 +47,7 @@
             <mat-icon>account_box</mat-icon>
             <span>Profile</span>
           </button>
-          <!-- <button class="" mat-menu-item (click)="logout()"> -->
-          <button>
+          <button class="" mat-menu-item (click)="loggout()">
             <mat-icon>exit_to_app</mat-icon>
             <span>Logout</span>
           </button>

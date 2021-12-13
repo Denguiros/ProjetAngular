@@ -45,7 +45,7 @@ export class MemberFormComponent implements OnInit {
   initForm(member: Member | null): void {
     this.form = new FormGroup({
       cin: new FormControl(member?.cin, [Validators.required]),
-      name: new FormControl(member?.name, [Validators.required]),
+      name: new FormControl(member?.nom, [Validators.required]),
       cv: new FormControl(member?.cv, []),
       type: new FormControl(member?.type, [Validators.required]),
     });
