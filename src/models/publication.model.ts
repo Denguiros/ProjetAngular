@@ -1,8 +1,8 @@
 interface Publication {
-  Id : Long;
+  id : Long;
   type : string;
-  Titre : string;
+  titre : string;
   lien : string;
-  Date : Date;
-  Sourcepdf: string;
+  date : Date;
+  sourcepdf: string;
 }

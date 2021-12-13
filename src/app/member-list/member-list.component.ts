@@ -14,7 +14,7 @@ export class MemberListComponent implements OnInit {
     this.fetchDataSource();
   }
   fetchDataSource(): void {
-    this.datasource = this.memberService.tab;
+    this.getAllMembers();
   }
   displayedColumns = [
     'id',
@@ -29,7 +29,10 @@ export class MemberListComponent implements OnInit {
     name: '',
   };
   getAllMembers() {
-    this.datasource = this.memberService.tab;
+    this.memberService.getAllMemebers().then((members) => {
+      console.log(members);
+      this.datasource = members;
+    });
   }
   onRemove(id: string) {
     this.memberService.deleteMemberById(id).then(() => {
@@ -59,7 +62,7 @@ export class MemberListComponent implements OnInit {
   searchMemebersByName(input: string) {
     if (input != '') {
       this.getAllMembers();
-      return this.datasource.filter((member) => member.name.includes(input));
+      return this.datasource.filter((member) => member.nom.includes(input));
     }
     return [];
   }
